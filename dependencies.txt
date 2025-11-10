@@ -1,0 +1,8 @@
+git
+make
+gcc
+nasm
+vim
+xorriso
+curl
+qemu-system-i386
