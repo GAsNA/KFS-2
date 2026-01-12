@@ -110,12 +110,6 @@ qemu-system-i386 -cdrom [your iso]
 
 ## Resources
 
-- The BIBLE, for basic kernel: https://arjunsreedharan.org/post/82710718100/kernels-101-lets-write-a-kernel
+- The BIBLE: https://wiki.osdev.org/Global_Descriptor_Table
 
-- The BIBLE 2, for keyboard: https://arjunsreedharan.org/post/99370248137/kernels-201-lets-write-a-kernel-with-keyboard
-
-- For keyboard scancodes: https://aeb.win.tue.nl/linux/kbd/scancodes-1.html
-
-- For another system of keyboard, color and build iso image: https://theogill.medium.com/creating-a-kernel-from-scratch-1a1aa569780f
-
-- To move the cursor: https://hasinisama.medium.com/building-your-own-operating-system-drivers-8adfc889398b
+= The BIBLE in video: https://www.youtube.com/watch?v=jwulDRMQ53I
