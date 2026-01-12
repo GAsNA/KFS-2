@@ -2,7 +2,7 @@
 
 extern void gdt_flush(struct gdt_ptr_struct*);
 
-struct gdt_entry_struct gdt_entries[5];
+struct gdt_entry_struct gdt_entries[7];
 struct gdt_ptr_struct gdt_ptr;
 
 void init_gdt()
@@ -11,10 +11,14 @@ void init_gdt()
 	gdt_ptr.base = (unsigned int) &gdt_entries;
 
 	set_gdt_gate(0, 0, 0, 0, 0); // Null segment
-	set_gdt_gate(1, 0, 0xFFFFFFFF, 0x9A, 0xCF); // Kernel code segment
-	set_gdt_gate(2, 0, 0xFFFFFFFF, 0x92, 0xCF); // Kernel data segment
-	set_gdt_gate(3, 0, 0xFFFFFFFF, 0xFA, 0xCF); // User code segment
-	set_gdt_gate(4, 0, 0xFFFFFFFF, 0xF2, 0xCF); // User data segment
+
+	set_gdt_gate(1, 0, LIMIT, 0x9A, GRAN); // Kernel code segment
+	set_gdt_gate(2, 0, LIMIT, 0x92, GRAN); // Kernel data segment
+	set_gdt_gate(3, 0, LIMIT, 0x92, GRAN); // Kernel stack segment
+
+	set_gdt_gate(4, 0, LIMIT, 0xFA, GRAN); // User code segment
+	set_gdt_gate(5, 0, LIMIT, 0xF2, GRAN); // User data segment
+	set_gdt_gate(6, 0, LIMIT, 0xF2, GRAN); // User stack segment
 						  
 	gdt_flush(&gdt_ptr);
 }

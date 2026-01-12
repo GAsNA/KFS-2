@@ -5,6 +5,9 @@ typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
 typedef unsigned int uint32_t;
 
+# define LIMIT	0xFFFFFFFF
+# define GRAN	0xCF
+
 struct gdt_entry_struct
 {
 	uint16_t	limit;
