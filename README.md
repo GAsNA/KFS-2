@@ -1,8 +1,8 @@
-# KFS-1
+# KFS-2
 
 Discover the world of "Kernel Programming" and learn how to create your very own Kernel from scratch.
 
-This project is the first in a serie of 10 projects, introducing into the Kernel world. This first project is a very basic kernel with some features.
+This project is the second in a serie of 10 projects, introducing into the Kernel world. This second project ask to code the GDT.
 
 Is based on a i386 (x86) architecture.
 
@@ -112,4 +112,4 @@ qemu-system-i386 -cdrom [your iso]
 
 - The BIBLE: https://wiki.osdev.org/Global_Descriptor_Table
 
-= The BIBLE in video: https://www.youtube.com/watch?v=jwulDRMQ53I
+- The BIBLE in video: https://www.youtube.com/watch?v=jwulDRMQ53I
