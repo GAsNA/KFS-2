@@ -43,5 +43,6 @@ extern t_terminal terminal;
 # include "cursor.h"
 # include "scroll.h"
 # include "gdt.h"
+# include "stdint.h"
 
 #endif

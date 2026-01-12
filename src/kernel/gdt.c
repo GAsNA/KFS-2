@@ -1,4 +1,4 @@
-#include "gdt.h"
+#include "kernel.h"
 
 extern void gdt_flush(struct gdt_ptr_struct*);
 
