@@ -5,10 +5,11 @@ t_terminal terminal;
 void main(void)
 {
 	init_terminal();
+	init_gdt();
 
 	clear_terminal();
 
-	print_on_terminal("42 - rleseur\n\n", LIGHT_BLUE);
+	print_on_terminal("42 - rleseur && aweaver\n\n", LIGHT_BLUE);
 
 	printk(KERN_ERR "This is a printk ERR test.\n");
 	printk(KERN_DEFAULT "This a printk DEFAULT test.\n");

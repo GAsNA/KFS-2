@@ -47,7 +47,7 @@ static int check_for_shortcut_and_escaped_keycode(unsigned char keycode)
 {
 	int is_checked = 0;
 
-	// TODO escaped altgr and ctrlright?
+	// TODO kfs2 escaped altgr and ctrlright?
 
 	if (keycode == CAPSLOCK)
 	{
@@ -117,13 +117,13 @@ static int check_for_shortcut_and_escaped_keycode(unsigned char keycode)
 	// If is inser key (keypad0 code with escape code or no numslock)
 	else if (keycode == KEYPAD0 && (terminal.to_escape == 1 || terminal.numslock == 0))
 	{
-		// TODO insert
+		// TODO kfs2 insert
 		is_checked = 1;
 	}
 	// If is supp key (keypadpoint code with escape code or no numslock)
 	else if (keycode == KEYPADPOINT && (terminal.to_escape == 1 || terminal.numslock == 0))
 	{
-		// TODO delete to right
+		// TODO kfs2 delete to right
 		// perhaps use move right 1 then delete to left ?
 		is_checked = 1;
 	}
@@ -198,13 +198,6 @@ void keyboard_handler(void) {
 	/* If key is not pressed, do not write on terminal and return */
 	if (!is_pressed)
 		return;
-
-//	if (terminal.to_escape == 1)
-//	{
-//		print_on_terminal("<escape:", MAGENTA);
-//		print_on_terminal(itoa(keycode), MAGENTA);
-//		print_on_terminal("> ", MAGENTA);
-//	}
 
 	/* Check the keycode for non-printable char */
 	if (check_for_shortcut_and_escaped_keycode(keycode))

@@ -11,6 +11,7 @@ section .text
 
 global read_port
 global write_port
+global gdt_flush
 global outb
 global start
 
@@ -25,6 +26,20 @@ write_port:
 	mov edx, [esp + 4]
 	mov al, [esp + 4 + 4]
 	out dx, al
+	ret
+
+gdt_flush:
+	mov eax, [esp+4]		; Load the address of the GDT descriptor from the stack
+	lgdt [eax]			; Load GDT
+
+	mov eax, 0x10			; Load data segment selector into eax
+	mov ds, ax			; Load ds with data segment selector
+	mov es, ax
+	mov fs, ax
+	mov gs, ax
+	mov ss, ax
+	jmp 0x08:.flush			; Jup to flush
+.flush:
 	ret
 
 ; outb - send a byte to an I/O port

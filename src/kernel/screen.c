@@ -46,5 +46,15 @@ void change_screen(int screen_number)
 	terminal.current_screen = screen_number;
 
 	load_screen_to_terminal(screen_number);
+}
 
+void init_screens(void)
+{
+	for (int i = 0; i < LIMIT_NB_SCREENS; i++)
+	{
+		for (int j = 0; j < SCREEN_SIZE; j++)
+			terminal.screens[i].buffer[j] = 0 | (LIGHT_GRAY << 8);
+		terminal.screens[i].current_loc = 0;
+		terminal.screens[i].deletable = 0;
+	}
 }

@@ -1,5 +1,5 @@
 # CONSTANTS
-KERNEL_NAME = kernel-kfs.1.rleseur
+KERNEL_NAME = kernel-kfs.2.rleseur
 ISO_NAME = kfs-1.rleseur.iso
 
 BUILD_DIR = build/
@@ -13,7 +13,7 @@ KERNEL_DIR = ${SRC_DIR}kernel/
 LD_DIR = ${SRC_DIR}
 
 BOOT_FILES = boot.asm
-KERNEL_FILES = kernel.c keyboard.c terminal.c screen.c string.c printk.c cursor.c scroll.c
+KERNEL_FILES = kernel.c keyboard.c terminal.c screen.c string.c printk.c cursor.c scroll.c gdt.c
 LD_FILES = link.ld
 
 BOOT_SRC = ${addprefix ${BOOT_DIR}, ${BOOT_FILES}}

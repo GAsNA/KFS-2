@@ -18,6 +18,7 @@ void init_terminal(void)
 	terminal.capslock = 0;
 	terminal.numslock = 1;
 	terminal.to_escape = 0;
+	init_screens();
 }
 
 /**
@@ -82,7 +83,7 @@ void delete_on_terminal(void)
 	{
 		memcpy(&terminal.vidptr[terminal.current_loc - 1],
 			&terminal.vidptr[terminal.current_loc],
-			sizeof(short) * (SCREEN_SIZE - terminal.current_loc -1));
+			sizeof(short) * (SCREEN_SIZE - terminal.current_loc - 1));
 		terminal.current_loc--;
 		move_cursor(terminal.current_loc);
 	}
@@ -97,7 +98,7 @@ void tab_on_terminal(char colour)
 {
 	int i = 0;
 	short space = ' ' | (colour << 8);
-	if (terminal.current_loc + 4 >= SCREEN_SIZE)
+	if (terminal.current_loc + TAB_SIZE >= SCREEN_SIZE)
 		scroll_down();
 	for (int i = 0; i < TAB_SIZE; i++)
 		print_short_on_terminal(space);
@@ -126,9 +127,11 @@ void print_short_on_terminal(short c)
 		tab_on_terminal((c >> 8) & 0xff);
 		return;
 	}
-
-	//TODO: Add insert mode here to avoid check
-	if ((terminal.vidptr[terminal.current_loc] & 0xff) != '\0')
+	/* You are an ugly child but we still love you */
+	if (terminal.vidptr[SCREEN_SIZE - 1] & 0xff != '\0')
+		scroll_down();
+	if ((terminal.vidptr[terminal.current_loc] & 0xff) != '\0'
+		&& terminal.current_loc <= SCREEN_SIZE)
 	{
 		memcpy(&terminal.vidptr[terminal.current_loc + 1],
 			&terminal.vidptr[terminal.current_loc],
