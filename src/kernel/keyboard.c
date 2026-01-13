@@ -2,22 +2,6 @@
 #include "keyboard_map.h"
 
 /**
- * Allows to read a byte of the content of an input/output port
- *
- * Function from the sys/io.h file
- *
- * @param __port port on which data is read
- * @return char of data read
- */
-unsigned char inb (unsigned short int __port)
-{
-	unsigned char _v;
-
-	__asm__ __volatile__ ("inb %w1,%0":"=a" (_v):"Nd" (__port));
-	return _v;
-}
-
-/**
  * Return true (1) if a byte is read from port 0x64
  *
  * @return true or false

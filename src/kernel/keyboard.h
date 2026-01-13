@@ -10,8 +10,6 @@ extern void	write_port(unsigned short port, unsigned char data);
 # define ESCAPED_KEY_CODE 0xe0
 # define RELEASED_KEY_CODE 0x80
 
-unsigned char inb (unsigned short int __port);
-
 int is_key_available();
 void simulate_keyboard_interrupt();
 

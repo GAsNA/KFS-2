@@ -45,5 +45,6 @@ extern t_terminal terminal;
 # include "gdt.h"
 # include "stdint.h"
 # include "command.h"
+# include "in_out.h"
 
 #endif

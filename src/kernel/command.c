@@ -9,6 +9,11 @@ void reboot(void)
 	asm volatile ("hlt");
 }
 
+void shutdown(void)
+{
+	outw(0x2000, 0x604);
+}
+
 void exec_cmd(void)
 {
 	char cmd_rev[SCREEN_SIZE];
@@ -33,6 +38,8 @@ void exec_cmd(void)
 	// Execute command
 	if (strncmp(cmd, "reboot", 7) == 0)
 		reboot();
+	else if (strncmp(cmd, "shutdown", 9) == 0)
+		shutdown();
 	
 	// Reinitialize cmd
 	for (int i = 0; i < SCREEN_SIZE; i++)
