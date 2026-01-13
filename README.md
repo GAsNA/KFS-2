@@ -6,7 +6,7 @@ This project is the second in a serie of 10 projects, introducing into the Kerne
 
 Is based on a i386 (x86) architecture.
 
-![](images/preview_kfs-1_rleseur.gif)
+![](images/preview_kfs_2_rleseur_aweaver.gif)
 
 **Options**:
 - Color support
