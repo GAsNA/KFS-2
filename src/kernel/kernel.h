@@ -44,5 +44,6 @@ extern t_terminal terminal;
 # include "scroll.h"
 # include "gdt.h"
 # include "stdint.h"
+# include "command.h"
 
 #endif

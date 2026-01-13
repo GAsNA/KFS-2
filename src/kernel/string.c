@@ -3,6 +3,22 @@
 #include <stdarg.h>
 
 /**
+ * Calcul the len of a string
+ *
+ * @param str the string
+ * @return number of char in this str
+ */
+int strlen(char *str)
+{
+	int len = 0;
+
+	while (str[len])
+		len++;
+
+	return len;
+}
+
+/**
  * Calcul the number of digits in a number
  *
  * @param n the number

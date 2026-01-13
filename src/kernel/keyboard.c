@@ -9,7 +9,7 @@
  * @param __port port on which data is read
  * @return char of data read
  */
-static __inline unsigned char inb (unsigned short int __port)
+unsigned char inb (unsigned short int __port)
 {
 	unsigned char _v;
 
