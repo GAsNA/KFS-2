@@ -113,3 +113,5 @@ qemu-system-i386 -cdrom [your iso]
 - The BIBLE: https://wiki.osdev.org/Global_Descriptor_Table
 
 - The BIBLE in video: https://www.youtube.com/watch?v=jwulDRMQ53I
+
+- The reboot command: https://wiki.osdev.org/Reboot?utm_source=chatgpt.com
