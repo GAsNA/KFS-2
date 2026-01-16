@@ -9,12 +9,9 @@ Is based on a i386 (x86) architecture.
 ![](images/preview_kfs_2_rleseur_aweaver.gif)
 
 **Options**:
-- Color support
-- Keyboard handler
-- Helper 'printk'
-- Scroll and cursor support
-- Different screens helper and keyboard shortcut
-- Create Iso image from kernel binary
+- Reboot command
+- Shutdown command
+- Clear command
 
 **Shortcuts**:
 - **F1**: go to previous screen
