@@ -26,7 +26,7 @@ BUILD_OBJS = ${addprefix ${BUILD_DIR}, ${OBJS}}
 AS = nasm
 CC = gcc
 LD = ld
-GRUB = grub2-mkrescue
+GRUB = grub-mkrescue
 QEMU = qemu-system-i386
 
 AS_FLAGS = -f elf32
