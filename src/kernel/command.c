@@ -16,15 +16,14 @@ void shutdown(void)
 
 void clear(void)
 {
-	for (int i = 0; i < SCREEN_SIZE; i++)
-		terminal.vidptr[i] = '\0' | (LIGHT_GRAY << 8);
+	clear_terminal();
 
 	terminal.current_loc = 0;
 	terminal.deletable = 0;
 	move_cursor(0);
 }
 
-void exec_cmd(void)
+int exec_cmd(void)
 {
 	char cmd_rev[SCREEN_SIZE];
 
@@ -51,9 +50,18 @@ void exec_cmd(void)
 	else if (strncmp(cmd, "shutdown", 9) == 0)
 		shutdown();
 	else if (strncmp(cmd, "clear", 6) == 0)
+	{
 		clear();
+		return NO_NEW_LINE;
+	}
 	
 	// Reinitialize cmd
 	for (int i = 0; i < SCREEN_SIZE; i++)
 		cmd[i] = '\0';
+
+	// Reinitialize cmd_rev
+	for (int i = 0; i < SCREEN_SIZE; i++)
+		cmd_rev[i] = '\0';
+
+	return 0;
 }

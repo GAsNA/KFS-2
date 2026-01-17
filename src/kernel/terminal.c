@@ -57,7 +57,8 @@ void newline_on_terminal(void)
 	if (terminal.current_loc / NB_COLUMNS == NB_LINES - 1)
 		scroll_down();
 
-	exec_cmd();
+	if (exec_cmd() == NO_NEW_LINE)
+		return;
 
 	int filling = NB_COLUMNS - (terminal.current_loc % NB_COLUMNS);
 	if ((terminal.vidptr[terminal.current_loc] & 0xff) != '\0')
