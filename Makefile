@@ -1,6 +1,6 @@
 # CONSTANTS
-KERNEL_NAME = kernel-kfs.2.rleseur
-ISO_NAME = kfs-1.rleseur.iso
+KERNEL_NAME = kernel-kfs.2.rleseur.aweaver
+ISO_NAME = kfs-1.rleseur.aweaver.iso
 
 BUILD_DIR = build/
 ISO_DIR = ${BUILD_DIR}iso/
