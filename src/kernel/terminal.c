@@ -52,27 +52,31 @@ void	clear_line(int line_number)
  *
  * @return void
  */
-void newline_on_terminal(void)
+void newline_on_terminal(char exec)
 {
 	if (terminal.current_loc / NB_COLUMNS == NB_LINES - 1)
 		scroll_down();
 
-	if (exec_cmd() == NO_NEW_LINE)
+	if (exec && (exec_cmd() == NO_NEW_LINE))
 		return;
 
 	int filling = NB_COLUMNS - (terminal.current_loc % NB_COLUMNS);
+	// handles newline if cursor is not at the end of the line
 	if ((terminal.vidptr[terminal.current_loc] & 0xff) != '\0')
 	{
 		memcpy(&terminal.vidptr[terminal.current_loc + filling],
 			&terminal.vidptr[terminal.current_loc],
 			(SCREEN_SIZE - terminal.current_loc - filling) * sizeof(short));
 	}
+	//fill the rest of the line with spaces
 	for (int i = 0; i < filling; i++)
 		terminal.vidptr[terminal.current_loc + i] = ' ' | (LIGHT_GRAY << 8);
 	terminal.current_loc += filling;
 	terminal.deletable = terminal.current_loc;
 	move_cursor(terminal.current_loc);
 }
+
+
 
 /**
  * Delete a char on the terminal ('\b')
@@ -102,8 +106,6 @@ void tab_on_terminal(char colour)
 {
 	int i = 0;
 	short space = ' ' | (colour << 8);
-	if (terminal.current_loc + TAB_SIZE >= SCREEN_SIZE)
-		scroll_down();
 	for (int i = 0; i < TAB_SIZE; i++)
 		print_short_on_terminal(space);
 }
@@ -123,7 +125,12 @@ void print_short_on_terminal(short c)
 	}
 	if ((c & 0xff) == '\n')
 	{
-		newline_on_terminal();
+		newline_on_terminal(EXEC);
+		return;
+	}
+	if ((c & 0xff) == '\r')
+	{
+		newline_on_terminal(NOEXEC);
 		return;
 	}
 	if ((c & 0xff) == '\t')
@@ -141,8 +148,8 @@ void print_short_on_terminal(short c)
 			&terminal.vidptr[terminal.current_loc],
 			sizeof(short) * (SCREEN_SIZE - terminal.current_loc - 1));
 	}
-	terminal.vidptr[terminal.current_loc++] = c;
 	scroll_handler();
+	terminal.vidptr[terminal.current_loc++] = c;
 	move_cursor(terminal.current_loc);
 }
 

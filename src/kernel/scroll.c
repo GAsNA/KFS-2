@@ -8,7 +8,7 @@
 */
 void	scroll_handler()
 {
-	if (terminal.current_loc >= SCREEN_SIZE)
+	while (terminal.current_loc >= SCREEN_SIZE)
 		scroll_down();
 }
 

@@ -6,7 +6,7 @@ void hexdump(char *address, unsigned int size)
 	{
 		if (i % 8 == 0)
 		{
-			putchar('\n');
+			putchar('\r');
 			putaddr(address + i, LIGHT_GRAY, FILL);
 		}
 		putchar(' ');
@@ -14,8 +14,9 @@ void hexdump(char *address, unsigned int size)
 		{
 			if (j % 2 == 0)
 				putchar(' ');
-			puthex_byte(address[i + j], (LIGHT_GRAY << 8));
+			puthex_byte(address[i + j]);
 			j++;
 		}
 	}
+	scroll_down();
 }

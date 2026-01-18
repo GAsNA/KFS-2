@@ -155,11 +155,11 @@ void putaddr(int num, char colour, int fill_address)
 	if (fill_address)
 	{
 		for (int filling = 8 - character_count; filling > 0; filling--)
-			print_on_terminal("0", colour);
+			putchar_colour('0', colour);
 	}
 	while (character_count >= 0)
 	{
-		print_short_on_terminal(str[character_count] | (colour << 8));
+		putchar_colour(str[character_count], colour);
 		character_count--;
 	}
 }
@@ -212,9 +212,9 @@ void puthexa_capital(int nb, char colour)
 		print_short_on_terminal(hexa[n] | (colour << 8));
 }
 
-void puthex_byte(char c, char colour)
+void puthex_byte(char c)
 {
-	char *hexa = "0213456789ABCDEF";
+	char *hexa = "0123456789ABCDEF";
 	putchar(hexa[c / 16]);
 	putchar(hexa[c % 16]);
 }

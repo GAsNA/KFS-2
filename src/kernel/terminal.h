@@ -1,11 +1,14 @@
 #ifndef TERMINAL_H
 # define TERMINAL_H
 
+# define NOEXEC 0
+# define EXEC 1
+
 void init_terminal(void);
 
 void clear_line(int line_number);
 void clear_terminal(void);
-void newline_on_terminal(void);
+void newline_on_terminal(char exec_flag);
 void delete_on_terminal(void);
 void tab_on_terminal(char colour);
 

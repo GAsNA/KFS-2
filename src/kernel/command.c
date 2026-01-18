@@ -30,7 +30,7 @@ int exec_cmd(void)
 	// Get command
 	for (int i = 1; terminal.current_loc - i >= terminal.deletable; i++)
 	{
-		cmd_rev[i - 1] = terminal.vidptr[terminal.current_loc - i];
+		cmd_rev[i - 1] = terminal.vidptr[terminal.current_loc - i] & 0xff;
 	}
 
 	int len = strlen(cmd_rev);
@@ -55,9 +55,7 @@ int exec_cmd(void)
 		return NO_NEW_LINE;
 	}
 	else if (strncmp(cmd, "hexdump", 8) == 0)
-	{
-		hexdump(&cmd_rev, 64);
-	}
+		hexdump(cmd_rev, 128);
 	
 	// Reinitialize cmd
 	for (int i = 0; i < SCREEN_SIZE; i++)
