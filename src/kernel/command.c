@@ -53,9 +53,10 @@ int exec_cmd(void)
 	{
 		clear();
 		return NO_NEW_LINE;
+	}
 	else if (strncmp(cmd, "hexdump", 8) == 0)
 	{
-		hexdump(&cmd_rev, &cmd_rev[SCREEN_SIZE]);
+		hexdump(&cmd_rev, 64);
 	}
 	
 	// Reinitialize cmd

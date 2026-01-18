@@ -1,35 +1,21 @@
 # include "hexdump.h"
 
-void hexdump(uint32_t *upper_address, uint32_t *lower_address)
+void hexdump(char *address, unsigned int size) 
 {
-	printk("upper: %P\n", upper_address);
-	printk("lower : %P\n", lower_address);
-	if (upper_address < lower_address)
+	for (unsigned int i = 0; i < size; i += 8)
 	{
-		uint32_t *tmp;
-
-		printk("entered\n");
-		tmp = upper_address;
-		upper_address = lower_address;
-		lower_address = tmp;
-	}
-	printk("upper: %P\n", upper_address);
-	printk("lower : %P\n", lower_address);
-
-	//force upper_address align
-	upper_address = (uint32_t *)((uint32_t)upper_address & ~0x0f);
-	// Printing routine
-	for (int i = 0; lower_address + i < upper_address;)
-	{
-		printk("%P %x%x %x%x %x%x %x%x\n",
-			       	lower_address + i,
-				lower_address[++i],
-				lower_address[++i],
-				lower_address[++i],
-				lower_address[++i],
-				lower_address[++i],
-				lower_address[++i],
-				lower_address[++i],
-				lower_address[++i]);
+		if (i % 8 == 0)
+		{
+			putchar('\n');
+			putaddr(address + i, LIGHT_GRAY, FILL);
+		}
+		putchar(' ');
+		for (unsigned int j = 0;j < 8 && i + j < size; j++)
+		{
+			if (j % 2 == 0)
+				putchar(' ');
+			puthex_byte(address[i + j], (LIGHT_GRAY << 8));
+			j++;
+		}
 	}
 }

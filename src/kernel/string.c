@@ -44,6 +44,15 @@ static int nbrlen(int n)
 	return (len);
 }
 
+void putchar(char c)
+{
+	print_short_on_terminal(c | (LIGHT_GRAY << 8));
+}
+
+void putchar_colour(char c, char colour)
+{
+	print_short_on_terminal(c | (colour << 8));
+}
 /**
  * Transform an int to a string
  *
@@ -201,4 +210,11 @@ void puthexa_capital(int nb, char colour)
 	}
 	else
 		print_short_on_terminal(hexa[n] | (colour << 8));
+}
+
+void puthex_byte(char c, char colour)
+{
+	char *hexa = "0213456789ABCDEF";
+	putchar(hexa[c / 16]);
+	putchar(hexa[c % 16]);
 }
