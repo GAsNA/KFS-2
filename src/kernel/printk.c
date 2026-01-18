@@ -15,7 +15,9 @@ static void print_arg(char c, void **arg, char colour)
 	else if (c == 's')
 		print_on_terminal(*(char **)(arg), colour);
 	else if (c == 'p')
-		putaddr((unsigned int)*(char **)(arg), colour);
+		putaddr((unsigned int)*(char **)(arg), colour, NOFILL);
+	else if (c == 'P')
+		putaddr((unsigned int)*(char **)(arg), colour, FILL);
 	else if (c == 'i' || c == 'd')
 		print_on_terminal(itoa((int)*(int **)(arg)), colour);
 	else if (c == 'u')

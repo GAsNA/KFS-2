@@ -130,26 +130,28 @@ int strncmp(char *s1, char *s2, unsigned int n)
  * @param colour the colour to use to print
  * @return void
  */
-void putaddr(int num, char colour)
+void putaddr(int num, char colour, int fill_address)
 {
-	char str[255];
-	int i;
+	char str[8];
+	int character_count;
 
-	if (!num)
-		return (print_on_terminal("0x0", colour));
-	i = 0;
-	while (num > 0)
+	character_count = 0;
+	do
 	{
-		str[i] = ("0123456789abcdef"[num % 16]);
+		str[character_count++] = ("0123456789abcdef"[num % 16]);
 		num = num / 16;
-		i++;
-	}
+	} while (num > 0);
+	character_count--;
 	print_on_terminal("0x", colour);
-	i--;
-	while (i >= 0)
+	if (fill_address)
 	{
-		print_short_on_terminal(str[i] | (colour << 8));
-		i--;
+		for (int filling = 8 - character_count; filling > 0; filling--)
+			print_on_terminal("0", colour);
+	}
+	while (character_count >= 0)
+	{
+		print_short_on_terminal(str[character_count] | (colour << 8));
+		character_count--;
 	}
 }
 
