@@ -8,5 +8,5 @@
 
 # include "hexdump.h"
 
-void hexdump();
+void hexdump(char *address, unsigned int size);
 #endif

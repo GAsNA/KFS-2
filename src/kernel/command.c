@@ -61,7 +61,7 @@ int exec_cmd(void)
 		printk("&stack_end: %P\n", &_stack_space_end);
 	}
 	else if (strncmp(cmd, "gdt", 4) == 0)
-		hexdump(0x00000800, 56);
+		hexdump((char *)0x00000800, 56);
 	else if (strncmp(cmd, "help", 5) == 0)
 		help();
 	return NEWLINE;
