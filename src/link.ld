@@ -2,8 +2,13 @@ OUTPUT_FORMAT(elf32-i386)
 ENTRY(start)
 SECTIONS
  {
-   . = 0x100000;
+   . = 0x00100000;
    .text : { *(.text) }
    .data : { *(.data) }
    .bss  : { *(.bss)  }
+   .gdt 0x00000800:
+   {
+	   KEEP(*(.gdt))
+   }
  }
+ 

@@ -2,7 +2,7 @@
 
 extern void gdt_flush(struct gdt_ptr_struct*);
 
-struct gdt_entry_struct gdt_entries[7];
+struct gdt_entry_struct gdt_entries[7] __attribute__((section(".gdt")));
 struct gdt_ptr_struct gdt_ptr;
 
 void init_gdt()

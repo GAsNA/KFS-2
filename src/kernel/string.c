@@ -212,7 +212,7 @@ void puthexa_capital(int nb, char colour)
 		print_short_on_terminal(hexa[n] | (colour << 8));
 }
 
-void puthex_byte(char c)
+void puthex_byte(unsigned char c)
 {
 	char *hexa = "0123456789ABCDEF";
 	putchar(hexa[c / 16]);
