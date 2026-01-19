@@ -2,7 +2,8 @@
 # define COMMAND_H
 # include "hexdump.h"
 
-# define NO_NEW_LINE 1
+# define NO_NEWLINE 1
+# define NEWLINE 0
 
 int exec_cmd(void);
 

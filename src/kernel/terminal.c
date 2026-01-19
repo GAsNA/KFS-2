@@ -141,8 +141,9 @@ void print_short_on_terminal(short c)
 	/* You are an ugly child but we still love you */
 	if (terminal.vidptr[SCREEN_SIZE - 1] & 0xff != '\0')
 		scroll_down();
+	/* handle insert mode */
 	if ((terminal.vidptr[terminal.current_loc] & 0xff) != '\0'
-		&& terminal.current_loc <= SCREEN_SIZE)
+		&& terminal.current_loc < SCREEN_SIZE)
 	{
 		memcpy(&terminal.vidptr[terminal.current_loc + 1],
 			&terminal.vidptr[terminal.current_loc],

@@ -204,6 +204,11 @@ void keyboard_handler(void) {
 	else
 		return;
 
+	if (selected_char == '\n')
+	{
+		if (exec_cmd() == NO_NEWLINE);
+		return ;
+	}
 	/* Write on terminal the selected char */
 	print_short_on_terminal(selected_char | (LIGHT_GRAY << 8));
 }

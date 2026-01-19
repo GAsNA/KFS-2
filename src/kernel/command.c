@@ -25,26 +25,12 @@ void clear(void)
 
 int exec_cmd(void)
 {
-	char cmd_rev[SCREEN_SIZE];
+	int current_line;
+	char cmd[NB_COLUMNS];
 
-	// Get command
-	for (int i = 1; terminal.current_loc - i >= terminal.deletable; i++)
-	{
-		cmd_rev[i - 1] = terminal.vidptr[terminal.current_loc - i] & 0xff;
-	}
-
-	int len = strlen(cmd_rev);
-	int j = len - 1;
-	char cmd[len + 1];
-
-	for (int i = 0; i < len; i++)
-	{
-		cmd[i] = cmd_rev[j];
-		j--;
-	}
-	cmd[len] = '\0';
-
-	// Execute command
+	current_line = terminal.current_loc / NB_COLUMNS;
+	for (int i = 0; i < NB_COLUMNS;i++)
+		cmd[i] = (char)(terminal.vidptr[(current_line * NB_COLUMNS) + i] & 0xff);
 	if (strncmp(cmd, "reboot", 7) == 0)
 		reboot();
 	else if (strncmp(cmd, "shutdown", 9) == 0)
@@ -52,18 +38,9 @@ int exec_cmd(void)
 	else if (strncmp(cmd, "clear", 6) == 0)
 	{
 		clear();
-		return NO_NEW_LINE;
+		return NO_NEWLINE;
 	}
 	else if (strncmp(cmd, "hexdump", 8) == 0)
-		hexdump(cmd_rev, 128);
-	
-	// Reinitialize cmd
-	for (int i = 0; i < SCREEN_SIZE; i++)
-		cmd[i] = '\0';
-
-	// Reinitialize cmd_rev
-	for (int i = 0; i < SCREEN_SIZE; i++)
-		cmd_rev[i] = '\0';
-
-	return 0;
+		hexdump(cmd, 128);
+	return NEWLINE;
 }
