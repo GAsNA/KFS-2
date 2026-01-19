@@ -63,6 +63,7 @@ clean:
 fclean: clean
 	rm -rf ${KERNEL_NAME} ${ISO_NAME}
 
-re: fclean all
+re: fclean
+	${MAKE} --no-print-directory all
 
 .PHONY: all run-kernel iso run-iso clean fclean re

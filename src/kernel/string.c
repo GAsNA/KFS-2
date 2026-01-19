@@ -171,7 +171,7 @@ void putaddr(int num, char colour, int fill_address)
  * @param colour the colour to use to print
  * @return void
  */
-void puthexa_small(int nb, char colour)
+void puthexa_small(unsigned int nb, char colour)
 {
 	char *hexa = "0123456789abcdef";
 	long	n;
@@ -195,7 +195,7 @@ void puthexa_small(int nb, char colour)
  * @param colour the colour to use to print
  * @return void
  */
-void puthexa_capital(int nb, char colour)
+void puthexa_capital(unsigned int nb, char colour)
 {
 	char *hexa = "0123456789ABCDEF";
 	long	n;

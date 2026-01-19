@@ -2,6 +2,11 @@
 
 ;nasm directive - 32 bit
 bits 32
+
+%define STACK_SIZE 8192 ; 8KB
+global _stack_space
+global _stack_space_end
+
 section .text
 	;multiboot spec
 	align 4
@@ -54,10 +59,11 @@ outb:
 
 start:
 	cli				;block interrupts
-	mov esp, stack_space		;set stack pointer
+	mov esp, _stack_space_end	;set stack pointer
 	call main
 	hlt				;halt the CPU
 
 section .bss
-resb 8192				;8KB for stack
-stack_space:
+_stack_space:
+	resb STACK_SIZE				;defines the size of the stack see define on top of file
+_stack_space_end:

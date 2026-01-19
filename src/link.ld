@@ -5,9 +5,8 @@ SECTIONS
    . = 0x00100000;
    .text : { *(.text) }
    .data : { *(.data) }
-   .bss  : { *(.bss)  }
-   .gdt 0x00000800:
-   {
+   .bss  : { *(.bss) }
+   .gdt 0x00000800: {
 	   KEEP(*(.gdt))
    }
  }

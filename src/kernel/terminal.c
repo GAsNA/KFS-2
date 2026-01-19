@@ -52,13 +52,10 @@ void	clear_line(int line_number)
  *
  * @return void
  */
-void newline_on_terminal(char exec)
+void newline_on_terminal()
 {
 	if (terminal.current_loc / NB_COLUMNS == NB_LINES - 1)
 		scroll_down();
-
-	if (exec && (exec_cmd() == NO_NEW_LINE))
-		return;
 
 	int filling = NB_COLUMNS - (terminal.current_loc % NB_COLUMNS);
 	// handles newline if cursor is not at the end of the line
@@ -125,12 +122,7 @@ void print_short_on_terminal(short c)
 	}
 	if ((c & 0xff) == '\n')
 	{
-		newline_on_terminal(EXEC);
-		return;
-	}
-	if ((c & 0xff) == '\r')
-	{
-		newline_on_terminal(NOEXEC);
+		newline_on_terminal();
 		return;
 	}
 	if ((c & 0xff) == '\t')

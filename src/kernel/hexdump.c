@@ -6,8 +6,8 @@ void hexdump(char *address, unsigned int size)
 	{
 		if (i % 8 == 0)
 		{
-			putchar('\r');
-			putaddr(address + i, LIGHT_GRAY, FILL);
+			putchar('\n');
+			putaddr((unsigned int)address + i, LIGHT_GRAY, FILL);
 		}
 		putchar(' ');
 		for (unsigned int j = 0;j < 8 && i + j < size; j++)
@@ -18,5 +18,5 @@ void hexdump(char *address, unsigned int size)
 			j++;
 		}
 	}
-	scroll_down();
+	putchar('\n');
 }

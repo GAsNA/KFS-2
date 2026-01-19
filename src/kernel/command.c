@@ -1,5 +1,8 @@
 #include "kernel.h"
 
+extern char _stack_space;
+extern char _stack_space_end;
+
 void reboot(void)
 {
 	uint8_t good = 0x02;
@@ -23,6 +26,15 @@ void clear(void)
 	move_cursor(0);
 }
 
+void help(void)
+{
+	printk("%s: %s\n", "shutdown", "turns off the system");
+	printk("%s: %s\n", "reboot", "restarts the system");
+	printk("%s: %s\n", "clear", "clean the current terminal window");
+	printk("%s: %s\n", "gdt", "prints the content of the gdt");
+	printk("%s: %s\n", "hexdump", "prints the stack");
+}
+
 int exec_cmd(void)
 {
 	int current_line;
@@ -41,7 +53,11 @@ int exec_cmd(void)
 		return NO_NEWLINE;
 	}
 	else if (strncmp(cmd, "hexdump", 8) == 0)
-		hexdump(cmd, 128);
+	{
+		hexdump(&_stack_space, &_stack_space_end - &_stack_space);
+		printk("&stack: %P\n", &_stack_space);
+		printk("&stack_end: %P\n", &_stack_space_end);
+	}
 	else if (strncmp(cmd, "gdt", 4) == 0)
 		hexdump(0x00000800, 56);
 	return NEWLINE;
