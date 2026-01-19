@@ -28,6 +28,8 @@ void clear(void)
 
 void help(void)
 {
+	putchar('\n');
+	printk("%s: %s\n", "help", "shows this message");
 	printk("%s: %s\n", "shutdown", "turns off the system");
 	printk("%s: %s\n", "reboot", "restarts the system");
 	printk("%s: %s\n", "clear", "clean the current terminal window");
@@ -60,5 +62,7 @@ int exec_cmd(void)
 	}
 	else if (strncmp(cmd, "gdt", 4) == 0)
 		hexdump(0x00000800, 56);
+	else if (strncmp(cmd, "help", 5) == 0)
+		help();
 	return NEWLINE;
 }
